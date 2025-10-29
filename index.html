@@ -1,22 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <title>Cazadores del Abismo - Día 1</title>
-    <!-- A-Frame y AR.js desde CDN confiable -->
+
+    <!-- A-Frame y AR.js desde CDNs seguros -->
     <script src="https://cdn.jsdelivr.net/npm/aframe@1.5.0/dist/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/ar.js@3.4.6/aframe/build/aframe-ar.min.js"></script>
+
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+      #mensaje {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        font-family: sans-serif;
+        padding: 10px 20px;
+        border-radius: 12px;
+      }
+    </style>
   </head>
 
-  <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
-      <!-- Marcador: usa el patrón "hiro" -->
+  <body>
+    <!-- Escena principal -->
+    <a-scene
+      embedded
+      arjs="sourceType: webcam; debugUIEnabled: false;"
+      vr-mode-ui="enabled: false">
+
+      <!-- Marcador clásico “Hiro” -->
       <a-marker preset="hiro">
+        <!-- Cubo azul flotante -->
         <a-box position="0 0.5 0" color="#4CC3D9" shadow></a-box>
       </a-marker>
 
       <!-- Cámara -->
       <a-entity camera></a-entity>
     </a-scene>
+
+    <!-- Mensaje en pantalla -->
+    <div id="mensaje">Apuntá la cámara al marcador "Hiro"</div>
   </body>
 </html>
