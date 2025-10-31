@@ -1,50 +1,52 @@
 <!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <title>Cazadores del Abismo - Día 1</title>
-
-    <!-- A-Frame y AR.js desde CDNs seguros -->
-    <script src="https://cdn.jsdelivr.net/npm/aframe@1.5.0/dist/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/ar.js@3.4.6/aframe/build/aframe-ar.min.js"></script>
-
-    <style>
-      body {
-        margin: 0;
-        overflow: hidden;
-      }
-      #mensaje {
-        position: absolute;
-        bottom: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: rgba(0, 0, 0, 0.6);
-        color: white;
-        font-family: sans-serif;
-        padding: 10px 20px;
-        border-radius: 12px;
-      }
-    </style>
-  </head>
-
-  <body>
-    <!-- Escena principal -->
-    <a-scene
-      embedded
-      arjs="sourceType: webcam; debugUIEnabled: false;"
-      vr-mode-ui="enabled: false">
-
-      <!-- Marcador clásico “Hiro” -->
-      <a-marker preset="hiro">
-        <!-- Cubo azul flotante -->
-        <a-box position="0 0.5 0" color="#4CC3D9" shadow></a-box>
-      </a-marker>
-
-      <!-- Cámara -->
-      <a-entity camera></a-entity>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explora el arrecife de coral</title>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ar-js@1.0.0/dist/AR.js"></script>
+  <style>
+    /* Estilos para la interfaz */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+    #ar-container {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="ar-container">
+    <a-scene embedded arjs>
+      <a-assets>
+        <!-- Modelos 3D y texturas -->
+        <a-asset-item id="pez" src="models/pez.obj"></a-asset-item>
+        <a-asset-item id="coral" src="models/coral.obj"></a-asset-item>
+      </a-assets>
+      <a-marker-camera preset="hiro"></a-marker-camera>
+      <a-entity id="ar-content">
+        <!-- Contenido de RA -->
+      </a-entity>
     </a-scene>
+  </div>
+  <script>
+    // Código de AR.js
+    const arContent = document.querySelector('#ar-content');
+    const marker = document.querySelector('a-marker-camera');
 
-    <!-- Mensaje en pantalla -->
-    <div id="mensaje">Apuntá la cámara al marcador "Hiro"</div>
-  </body>
+    // Agregar modelos 3D y animaciones
+    arContent.innerHTML = `
+      <a-entity obj-model="#pez" scale="0.1 0.1 0.1" position="0 0 -1"></a-entity>
+      <a-entity obj-model="#coral" scale="0.1 0.1 0.1" position="1 0 -1"></a-entity>
+    `;
+  </script>
+</body>
 </html>
