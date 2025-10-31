@@ -25,7 +25,7 @@
 </head>
 <body>
   <div id="ar-container">
-    <a-scene embedded arjs>
+    <a-scene embedded arjs="sourceType: webcam; sourceUrl: ; debugUIEnabled: false;">
       <a-assets>
         <!-- Modelos 3D y texturas -->
         <a-asset-item id="pez" src="models/pez.obj"></a-asset-item>
@@ -35,18 +35,3 @@
       <a-entity id="ar-content">
         <!-- Contenido de RA -->
       </a-entity>
-    </a-scene>
-  </div>
-  <script>
-    // Código de AR.js
-    const arContent = document.querySelector('#ar-content');
-    const marker = document.querySelector('a-marker-camera');
-
-    // Agregar modelos 3D y animaciones
-    arContent.innerHTML = `
-      <a-entity obj-model="#pez" scale="0.1 0.1 0.1" position="0 0 -1"></a-entity>
-      <a-entity obj-model="#coral" scale="0.1 0.1 0.1" position="1 0 -1"></a-entity>
-    `;
-  </script>
-</body>
-</html>
